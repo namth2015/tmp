@@ -1,0 +1,50 @@
+[2024-08-19T14:43:51.967+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-19T14:43:52.010+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: trino_query_dag.insert_data_inc manual__2024-08-19T14:38:47.720219+00:00 [queued]>
+[2024-08-19T14:43:52.021+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: trino_query_dag.insert_data_inc manual__2024-08-19T14:38:47.720219+00:00 [queued]>
+[2024-08-19T14:43:52.023+0000] {taskinstance.py:2306} INFO - Starting attempt 5 of 6
+[2024-08-19T14:43:52.045+0000] {taskinstance.py:2330} INFO - Executing <Task(TrinoOperator): insert_data_inc> on 2024-08-19 14:38:47.720219+00:00
+[2024-08-19T14:43:52.053+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=451) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-08-19T14:43:52.053+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'trino_query_dag', 'insert_data_inc', 'manual__2024-08-19T14:38:47.720219+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmppwg17otu']
+[2024-08-19T14:43:52.054+0000] {standard_task_runner.py:64} INFO - Started process 452 to run task
+[2024-08-19T14:43:52.055+0000] {standard_task_runner.py:91} INFO - Job 33: Subtask insert_data_inc
+[2024-08-19T14:43:52.075+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-19T14:43:52.112+0000] {task_command.py:426} INFO - Running <TaskInstance: trino_query_dag.insert_data_inc manual__2024-08-19T14:38:47.720219+00:00 [running]> on host b476143e3d64
+[2024-08-19T14:43:52.223+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='trino_query_dag' AIRFLOW_CTX_TASK_ID='insert_data_inc' AIRFLOW_CTX_EXECUTION_DATE='2024-08-19T14:38:47.720219+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-08-19T14:38:47.720219+00:00'
+[2024-08-19T14:43:52.226+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-19T14:43:52.248+0000] {sql.py:282} INFO - Executing: insert into  hive.iris.traffic_crashes SELECT crash_date FROM oracle.test.traffic_crashes WHERE crash_date = '2023-07-13'
+[2024-08-19T14:43:52.268+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-19T14:43:52.280+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-19T14:43:52.289+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-19T14:43:52.294+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-19T14:43:52.302+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 288, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 439, in run
+    with closing(conn.cursor()) as cur:
+                 ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/dbapi.py", line 264, in cursor
+    request = self._create_request()
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/dbapi.py", line 245, in _create_request
+    return trino.client.TrinoRequest(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 434, in __init__
+    raise ValueError("cannot use authentication with HTTP")
+ValueError: cannot use authentication with HTTP
+[2024-08-19T14:43:52.331+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=trino_query_dag, task_id=insert_data_inc, run_id=manual__2024-08-19T14:38:47.720219+00:00, execution_date=20240819T143847, start_date=20240819T144352, end_date=20240819T144352
+[2024-08-19T14:43:52.346+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 33 for task insert_data_inc (cannot use authentication with HTTP; 452)
+[2024-08-19T14:43:52.391+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-08-19T14:43:52.406+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class TrinoOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.)
+[2024-08-19T14:43:52.429+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-19T14:43:52.432+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

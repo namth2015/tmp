@@ -1,0 +1,129 @@
+[2024-08-17T16:38:34.371+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-17T16:38:34.439+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: trino_query_dag.insert_data_inc manual__2024-08-17T16:09:42.899943+00:00 [queued]>
+[2024-08-17T16:38:34.455+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: trino_query_dag.insert_data_inc manual__2024-08-17T16:09:42.899943+00:00 [queued]>
+[2024-08-17T16:38:34.456+0000] {taskinstance.py:2306} INFO - Starting attempt 8 of 9
+[2024-08-17T16:38:34.481+0000] {taskinstance.py:2330} INFO - Executing <Task(TrinoOperator): insert_data_inc> on 2024-08-17 16:09:42.899943+00:00
+[2024-08-17T16:38:34.505+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=441) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-08-17T16:38:34.511+0000] {standard_task_runner.py:64} INFO - Started process 442 to run task
+[2024-08-17T16:38:34.506+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'trino_query_dag', 'insert_data_inc', 'manual__2024-08-17T16:09:42.899943+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmpq5j58ucj']
+[2024-08-17T16:38:34.514+0000] {standard_task_runner.py:91} INFO - Job 29: Subtask insert_data_inc
+[2024-08-17T16:38:34.563+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-17T16:38:34.662+0000] {task_command.py:426} INFO - Running <TaskInstance: trino_query_dag.insert_data_inc manual__2024-08-17T16:09:42.899943+00:00 [running]> on host 1377ae4f1b48
+[2024-08-17T16:38:34.806+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='trino_query_dag' AIRFLOW_CTX_TASK_ID='insert_data_inc' AIRFLOW_CTX_EXECUTION_DATE='2024-08-17T16:09:42.899943+00:00' AIRFLOW_CTX_TRY_NUMBER='8' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-08-17T16:09:42.899943+00:00'
+[2024-08-17T16:38:34.808+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-17T16:38:34.841+0000] {sql.py:282} INFO - Executing: insert into  hive.iris.traffic_crashes SELECT crash_date FROM oracle.test.traffic_crashes WHERE crash_date = '2023-07-13'
+[2024-08-17T16:38:34.888+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-17T16:38:34.902+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-17T16:38:34.916+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-17T16:38:34.927+0000] {sql.py:495} INFO - Running statement: insert into  hive.iris.traffic_crashes SELECT crash_date FROM oracle.test.traffic_crashes WHERE crash_date = '2023-07-13', parameters: None
+[2024-08-17T16:38:36.066+0000] {client.py:899} INFO - failed after 3 attempts
+[2024-08-17T16:38:36.068+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-17T16:38:36.070+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 468, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1097, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/connection.py", line 642, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/connection.py", line 783, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/util/ssl_.py", line 471, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/util/ssl_.py", line 515, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/ssl.py", line 1042, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.12/ssl.py", line 1320, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLError: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1000)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 492, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1000)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='trino-coordinator', port=8080): Max retries exceeded with url: /v1/statement (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1000)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 802, in execute
+    response = self._request.post(self._query, additional_http_headers)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 558, in post
+    http_response = self._post(
+                    ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 901, in decorated
+    raise error
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 888, in decorated
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/sessions.py", line 637, in post
+    return self.request("POST", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/adapters.py", line 698, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='trino-coordinator', port=8080): Max retries exceeded with url: /v1/statement (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1000)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 288, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 442, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 500, in _run_command
+    cur.execute(sql_statement)
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/dbapi.py", line 589, in execute
+    self._iterator = iter(self._query.execute())
+                          ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 804, in execute
+    raise trino.exceptions.TrinoConnectionError("failed to execute: {}".format(e))
+trino.exceptions.TrinoConnectionError: failed to execute: HTTPSConnectionPool(host='trino-coordinator', port=8080): Max retries exceeded with url: /v1/statement (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1000)')))
+[2024-08-17T16:38:36.097+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=trino_query_dag, task_id=insert_data_inc, run_id=manual__2024-08-17T16:09:42.899943+00:00, execution_date=20240817T160942, start_date=20240817T163834, end_date=20240817T163836
+[2024-08-17T16:38:36.113+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 29 for task insert_data_inc (failed to execute: HTTPSConnectionPool(host='trino-coordinator', port=8080): Max retries exceeded with url: /v1/statement (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1000)'))); 442)
+[2024-08-17T16:38:36.139+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-08-17T16:38:36.165+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class TrinoOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.)
+[2024-08-17T16:38:36.186+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-17T16:38:36.190+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

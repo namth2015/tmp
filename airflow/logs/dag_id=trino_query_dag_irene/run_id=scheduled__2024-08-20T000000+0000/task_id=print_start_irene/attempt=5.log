@@ -1,0 +1,21 @@
+[2024-08-21T08:49:36.264+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-21T08:49:36.308+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: trino_query_dag_irene.print_start_irene scheduled__2024-08-20T00:00:00+00:00 [queued]>
+[2024-08-21T08:49:36.329+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: trino_query_dag_irene.print_start_irene scheduled__2024-08-20T00:00:00+00:00 [queued]>
+[2024-08-21T08:49:36.355+0000] {taskinstance.py:2306} INFO - Starting attempt 5 of 6
+[2024-08-21T08:49:36.670+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): print_start_irene> on 2024-08-20 00:00:00+00:00
+[2024-08-21T08:49:36.679+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'trino_query_dag_irene', 'print_start_irene', 'scheduled__2024-08-20T00:00:00+00:00', '--job-id', '130', '--raw', '--subdir', 'DAGS_FOLDER/irene.py', '--cfg-path', '/tmp/tmpnsd3zr0r']
+[2024-08-21T08:49:36.682+0000] {standard_task_runner.py:91} INFO - Job 130: Subtask print_start_irene
+[2024-08-21T08:49:36.683+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=19997) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-08-21T08:49:36.684+0000] {standard_task_runner.py:64} INFO - Started process 19998 to run task
+[2024-08-21T08:49:36.699+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-21T08:49:36.746+0000] {task_command.py:426} INFO - Running <TaskInstance: trino_query_dag_irene.print_start_irene scheduled__2024-08-20T00:00:00+00:00 [running]> on host b476143e3d64
+[2024-08-21T08:49:37.091+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='trino_query_dag_irene' AIRFLOW_CTX_TASK_ID='print_start_irene' AIRFLOW_CTX_EXECUTION_DATE='2024-08-20T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-08-20T00:00:00+00:00'
+[2024-08-21T08:49:37.092+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-21T08:49:37.112+0000] {logging_mixin.py:188} INFO - Start of DAG execution
+[2024-08-21T08:49:37.113+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-08-21T08:49:37.114+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-21T08:49:37.126+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=trino_query_dag_irene, task_id=print_start_irene, run_id=scheduled__2024-08-20T00:00:00+00:00, execution_date=20240820T000000, start_date=20240821T084936, end_date=20240821T084937
+[2024-08-21T08:49:37.181+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2024-08-21T08:49:37.193+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class TrinoOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.)
+[2024-08-21T08:49:37.218+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-08-21T08:49:37.227+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

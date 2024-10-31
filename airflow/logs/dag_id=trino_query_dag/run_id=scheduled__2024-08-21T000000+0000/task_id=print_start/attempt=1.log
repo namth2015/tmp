@@ -1,0 +1,19 @@
+[2024-08-22T01:12:07.071+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-22T01:12:07.626+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: trino_query_dag.print_start scheduled__2024-08-21T00:00:00+00:00 [queued]>
+[2024-08-22T01:12:07.635+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: trino_query_dag.print_start scheduled__2024-08-21T00:00:00+00:00 [queued]>
+[2024-08-22T01:12:11.521+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-08-22T01:12:14.976+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): print_start> on 2024-08-21 00:00:00+00:00
+[2024-08-22T01:12:14.985+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=24809) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-08-22T01:12:14.987+0000] {standard_task_runner.py:64} INFO - Started process 24822 to run task
+[2024-08-22T01:12:14.985+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'trino_query_dag', 'print_start', 'scheduled__2024-08-21T00:00:00+00:00', '--job-id', '148', '--raw', '--subdir', 'DAGS_FOLDER/test.py', '--cfg-path', '/tmp/tmp6p8gan8z']
+[2024-08-22T01:12:14.988+0000] {standard_task_runner.py:91} INFO - Job 148: Subtask print_start
+[2024-08-22T01:12:17.477+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-22T01:12:17.562+0000] {task_command.py:426} INFO - Running <TaskInstance: trino_query_dag.print_start scheduled__2024-08-21T00:00:00+00:00 [running]> on host b476143e3d64
+[2024-08-22T01:12:22.194+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='trino_query_dag' AIRFLOW_CTX_TASK_ID='print_start' AIRFLOW_CTX_EXECUTION_DATE='2024-08-21T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-08-21T00:00:00+00:00'
+[2024-08-22T01:12:22.205+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-22T01:12:22.233+0000] {logging_mixin.py:188} INFO - Start of DAG execution
+[2024-08-22T01:12:22.235+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-08-22T01:12:22.237+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-22T01:12:22.256+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=trino_query_dag, task_id=print_start, run_id=scheduled__2024-08-21T00:00:00+00:00, execution_date=20240821T000000, start_date=20240822T011207, end_date=20240822T011222
+[2024-08-22T01:12:25.189+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2024-08-22T01:12:25.208+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

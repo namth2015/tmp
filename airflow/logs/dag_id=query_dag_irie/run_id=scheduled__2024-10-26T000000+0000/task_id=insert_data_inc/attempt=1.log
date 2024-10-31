@@ -1,0 +1,25 @@
+[2024-10-27T04:09:36.319+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-27T04:09:36.385+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: query_dag_irie.insert_data_inc scheduled__2024-10-26T00:00:00+00:00 [queued]>
+[2024-10-27T04:09:36.399+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: query_dag_irie.insert_data_inc scheduled__2024-10-26T00:00:00+00:00 [queued]>
+[2024-10-27T04:09:40.099+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-10-27T04:09:41.830+0000] {taskinstance.py:2330} INFO - Executing <Task(TrinoOperator): insert_data_inc> on 2024-10-26 00:00:00+00:00
+[2024-10-27T04:09:41.954+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'query_dag_irie', 'insert_data_inc', 'scheduled__2024-10-26T00:00:00+00:00', '--job-id', '1906', '--raw', '--subdir', 'DAGS_FOLDER/irie.py', '--cfg-path', '/tmp/tmp5p37j5f7']
+[2024-10-27T04:09:41.970+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=66206) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-27T04:09:41.998+0000] {standard_task_runner.py:91} INFO - Job 1906: Subtask insert_data_inc
+[2024-10-27T04:09:42.023+0000] {standard_task_runner.py:64} INFO - Started process 66273 to run task
+[2024-10-27T04:09:45.069+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-27T04:09:45.610+0000] {task_command.py:426} INFO - Running <TaskInstance: query_dag_irie.insert_data_inc scheduled__2024-10-26T00:00:00+00:00 [running]> on host 92783cd12528
+[2024-10-27T04:09:45.833+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:356 DeprecationWarning: The sql_engine_encoding option in [core] has been moved to the sql_engine_encoding option in [database] - the old setting has been used, but please update your config.
+[2024-10-27T04:09:48.255+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/utils/log/secrets_masker.py:84 DeprecationWarning: The sensitive_variable_fields option in [admin] has been moved to the sensitive_var_conn_names option in [core] - the old setting has been used, but please update your config.
+[2024-10-27T04:09:51.809+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='query_dag_irie' AIRFLOW_CTX_TASK_ID='insert_data_inc' AIRFLOW_CTX_EXECUTION_DATE='2024-10-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-10-26T00:00:00+00:00'
+[2024-10-27T04:09:51.822+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-27T04:09:52.091+0000] {sql.py:282} INFO - Executing: insert into hive.irie.deposit select * from sqlserver.dbo.deposit
+[2024-10-27T04:09:52.160+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-10-27T04:09:52.236+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-10-27T04:09:52.311+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-10-27T04:09:52.332+0000] {sql.py:495} INFO - Running statement: insert into hive.irie.deposit select * from sqlserver.dbo.deposit, parameters: None
+[2024-10-27T04:10:02.908+0000] {local_task_job_runner.py:124} ERROR - Received SIGTERM. Terminating subprocesses
+[2024-10-27T04:10:03.290+0000] {process_utils.py:132} INFO - Sending 15 to group 66273. PIDs of all processes in the group: [66273]
+[2024-10-27T04:10:03.323+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 66273
+[2024-10-27T04:10:03.332+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2024-10-27T04:10:03.338+0000] {trino.py:70} INFO - Stopping query run with queryId - 

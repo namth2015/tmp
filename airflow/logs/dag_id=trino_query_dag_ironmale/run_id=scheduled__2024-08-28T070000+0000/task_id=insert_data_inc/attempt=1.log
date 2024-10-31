@@ -1,0 +1,25 @@
+[2024-08-28T08:00:03.466+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-28T08:00:03.505+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: trino_query_dag_ironmale.insert_data_inc scheduled__2024-08-28T07:00:00+00:00 [queued]>
+[2024-08-28T08:00:03.515+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: trino_query_dag_ironmale.insert_data_inc scheduled__2024-08-28T07:00:00+00:00 [queued]>
+[2024-08-28T08:00:03.516+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-08-28T08:00:03.534+0000] {taskinstance.py:2330} INFO - Executing <Task(TrinoOperator): insert_data_inc> on 2024-08-28 07:00:00+00:00
+[2024-08-28T08:00:03.546+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=47863) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-08-28T08:00:03.547+0000] {standard_task_runner.py:64} INFO - Started process 47868 to run task
+[2024-08-28T08:00:03.553+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'trino_query_dag_ironmale', 'insert_data_inc', 'scheduled__2024-08-28T07:00:00+00:00', '--job-id', '673', '--raw', '--subdir', 'DAGS_FOLDER/ironmale.py', '--cfg-path', '/tmp/tmp11sndtb_']
+[2024-08-28T08:00:03.555+0000] {standard_task_runner.py:91} INFO - Job 673: Subtask insert_data_inc
+[2024-08-28T08:00:03.593+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-28T08:00:03.647+0000] {task_command.py:426} INFO - Running <TaskInstance: trino_query_dag_ironmale.insert_data_inc scheduled__2024-08-28T07:00:00+00:00 [running]> on host b476143e3d64
+[2024-08-28T08:00:03.775+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='trino_query_dag_ironmale' AIRFLOW_CTX_TASK_ID='insert_data_inc' AIRFLOW_CTX_EXECUTION_DATE='2024-08-28T07:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-08-28T07:00:00+00:00'
+[2024-08-28T08:00:03.778+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-28T08:00:03.795+0000] {sql.py:282} INFO - Executing: insert into hive.ironmale.soul select * from sqlserver.dbo.soul  where hour = 22
+[2024-08-28T08:00:03.831+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-28T08:00:03.844+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-28T08:00:03.856+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-28T08:00:03.860+0000] {sql.py:495} INFO - Running statement: insert into hive.ironmale.soul select * from sqlserver.dbo.soul  where hour = 22, parameters: None
+[2024-08-28T08:00:07.431+0000] {sql.py:504} INFO - Rows affected: 2700
+[2024-08-28T08:00:07.786+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-28T08:00:07.837+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=trino_query_dag_ironmale, task_id=insert_data_inc, run_id=scheduled__2024-08-28T07:00:00+00:00, execution_date=20240828T070000, start_date=20240828T080003, end_date=20240828T080007
+[2024-08-28T08:00:07.911+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2024-08-28T08:00:07.937+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class TrinoOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.)
+[2024-08-28T08:00:07.972+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-08-28T08:00:07.978+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

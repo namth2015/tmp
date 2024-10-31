@@ -1,0 +1,27 @@
+[2024-10-22T00:00:03.873+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-22T00:00:03.962+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: query_dag_irene.insert_data_inc scheduled__2024-10-21T00:00:00+00:00 [queued]>
+[2024-10-22T00:00:03.978+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: query_dag_irene.insert_data_inc scheduled__2024-10-21T00:00:00+00:00 [queued]>
+[2024-10-22T00:00:03.981+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-10-22T00:00:04.079+0000] {taskinstance.py:2330} INFO - Executing <Task(TrinoOperator): insert_data_inc> on 2024-10-21 00:00:00+00:00
+[2024-10-22T00:00:04.182+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'query_dag_irene', 'insert_data_inc', 'scheduled__2024-10-21T00:00:00+00:00', '--job-id', '1611', '--raw', '--subdir', 'DAGS_FOLDER/irene.py', '--cfg-path', '/tmp/tmpk07f51kb']
+[2024-10-22T00:00:04.202+0000] {standard_task_runner.py:91} INFO - Job 1611: Subtask insert_data_inc
+[2024-10-22T00:00:04.157+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=7430) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-22T00:00:04.236+0000] {standard_task_runner.py:64} INFO - Started process 7454 to run task
+[2024-10-22T00:00:04.269+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-22T00:00:04.470+0000] {task_command.py:426} INFO - Running <TaskInstance: query_dag_irene.insert_data_inc scheduled__2024-10-21T00:00:00+00:00 [running]> on host 92783cd12528
+[2024-10-22T00:00:04.486+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:356 DeprecationWarning: The sql_engine_encoding option in [core] has been moved to the sql_engine_encoding option in [database] - the old setting has been used, but please update your config.
+[2024-10-22T00:00:04.828+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/utils/log/secrets_masker.py:84 DeprecationWarning: The sensitive_variable_fields option in [admin] has been moved to the sensitive_var_conn_names option in [core] - the old setting has been used, but please update your config.
+[2024-10-22T00:00:04.977+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='query_dag_irene' AIRFLOW_CTX_TASK_ID='insert_data_inc' AIRFLOW_CTX_EXECUTION_DATE='2024-10-21T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-10-21T00:00:00+00:00'
+[2024-10-22T00:00:04.978+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-22T00:00:05.071+0000] {sql.py:282} INFO - Executing: insert into hive.irene.sou select * from sqlserver.dbo.sou
+[2024-10-22T00:00:05.129+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-10-22T00:00:05.167+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-10-22T00:00:05.189+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-10-22T00:00:05.194+0000] {sql.py:495} INFO - Running statement: insert into hive.irene.sou select * from sqlserver.dbo.sou, parameters: None
+[2024-10-22T00:00:23.530+0000] {sql.py:504} INFO - Rows affected: 1048571
+[2024-10-22T00:00:23.673+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-22T00:00:23.710+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=query_dag_irene, task_id=insert_data_inc, run_id=scheduled__2024-10-21T00:00:00+00:00, execution_date=20241021T000000, start_date=20241022T000003, end_date=20241022T000023
+[2024-10-22T00:00:23.749+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2024-10-22T00:00:23.776+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class TrinoOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.)
+[2024-10-22T00:00:23.800+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-10-22T00:00:23.807+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

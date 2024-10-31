@@ -1,0 +1,135 @@
+[2024-08-27T02:00:01.660+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-27T02:00:01.721+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [queued]>
+[2024-08-27T02:00:01.733+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [queued]>
+[2024-08-27T02:00:01.735+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-08-27T02:00:01.750+0000] {taskinstance.py:2330} INFO - Executing <Task(TrinoOperator): insert_data_inc> on 2024-08-27 01:00:00+00:00
+[2024-08-27T02:00:01.757+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=19351) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-08-27T02:00:01.758+0000] {standard_task_runner.py:64} INFO - Started process 19352 to run task
+[2024-08-27T02:00:01.757+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'trino_query_dag_ivy', 'insert_data_inc', 'scheduled__2024-08-27T01:00:00+00:00', '--job-id', '386', '--raw', '--subdir', 'DAGS_FOLDER/ivy.py', '--cfg-path', '/tmp/tmpzi_h00gq']
+[2024-08-27T02:00:01.759+0000] {standard_task_runner.py:91} INFO - Job 386: Subtask insert_data_inc
+[2024-08-27T02:00:01.774+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-27T02:00:01.823+0000] {task_command.py:426} INFO - Running <TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [running]> on host b476143e3d64
+[2024-08-27T02:00:01.919+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='trino_query_dag_ivy' AIRFLOW_CTX_TASK_ID='insert_data_inc' AIRFLOW_CTX_EXECUTION_DATE='2024-08-27T01:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-08-27T01:00:00+00:00'
+[2024-08-27T02:00:01.920+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-27T02:00:01.937+0000] {sql.py:282} INFO - Executing: insert into hive.ivy.customer select *  from sqlserver.dbo.customer WHERE date = CAST('2023-11-25' AS DATE)
+[2024-08-27T02:00:01.953+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:00:01.961+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:00:01.969+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:00:01.973+0000] {sql.py:495} INFO - Running statement: insert into hive.ivy.customer select *  from sqlserver.dbo.customer WHERE date = CAST('2023-11-25' AS DATE), parameters: None
+[2024-08-27T02:00:02.246+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-27T02:00:02.247+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 288, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 442, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 500, in _run_command
+    cur.execute(sql_statement)
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/dbapi.py", line 589, in execute
+    self._iterator = iter(self._query.execute())
+                          ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 819, in execute
+    self._result.rows += self.fetch()
+                         ^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 839, in fetch
+    status = self._request.process(response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 611, in process
+    raise self._process_error(response["error"], response.get("id"))
+trino.exceptions.TrinoUserError: TrinoUserError(type=USER_ERROR, name=TYPE_MISMATCH, message="Insert query has mismatched column types: Table: [integer, date, varchar(50), varchar(100), varchar(50), varchar(10), varchar(50), varchar(20), varchar(50)], Query: [double, timestamp(3), varchar(255), varchar(255), varchar(255), double, varchar(255), double, varchar(255)]", query_id=20240826_112002_00129_kfczv)
+[2024-08-27T02:00:02.259+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=trino_query_dag_ivy, task_id=insert_data_inc, run_id=scheduled__2024-08-27T01:00:00+00:00, execution_date=20240827T010000, start_date=20240827T020001, end_date=20240827T020002
+[2024-08-27T02:00:02.278+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 386 for task insert_data_inc (TrinoUserError(type=USER_ERROR, name=TYPE_MISMATCH, message="Insert query has mismatched column types: Table: [integer, date, varchar(50), varchar(100), varchar(50), varchar(10), varchar(50), varchar(20), varchar(50)], Query: [double, timestamp(3), varchar(255), varchar(255), varchar(255), double, varchar(255), double, varchar(255)]", query_id=20240826_112002_00129_kfczv); 19352)
+[2024-08-27T02:00:02.293+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-08-27T02:00:02.305+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class TrinoOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.)
+[2024-08-27T02:00:02.321+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-27T02:00:02.323+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-08-27T02:09:52.021+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-27T02:09:52.064+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [queued]>
+[2024-08-27T02:09:52.077+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [queued]>
+[2024-08-27T02:09:52.077+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-08-27T02:09:52.096+0000] {taskinstance.py:2330} INFO - Executing <Task(TrinoOperator): insert_data_inc> on 2024-08-27 01:00:00+00:00
+[2024-08-27T02:09:52.103+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=19675) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-08-27T02:09:52.106+0000] {standard_task_runner.py:64} INFO - Started process 19677 to run task
+[2024-08-27T02:09:52.105+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'trino_query_dag_ivy', 'insert_data_inc', 'scheduled__2024-08-27T01:00:00+00:00', '--job-id', '399', '--raw', '--subdir', 'DAGS_FOLDER/ivy.py', '--cfg-path', '/tmp/tmpg0jizkz1']
+[2024-08-27T02:09:52.107+0000] {standard_task_runner.py:91} INFO - Job 399: Subtask insert_data_inc
+[2024-08-27T02:09:52.124+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-27T02:09:52.168+0000] {task_command.py:426} INFO - Running <TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [running]> on host b476143e3d64
+[2024-08-27T02:09:52.290+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='trino_query_dag_ivy' AIRFLOW_CTX_TASK_ID='insert_data_inc' AIRFLOW_CTX_EXECUTION_DATE='2024-08-27T01:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-08-27T01:00:00+00:00'
+[2024-08-27T02:09:52.291+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-27T02:09:52.306+0000] {sql.py:282} INFO - Executing: insert into hive.ivy.customer select *  from sqlserver.dbo.customer WHERE date = CAST('2023-11-25' AS DATE)
+[2024-08-27T02:09:52.327+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:09:52.340+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:09:52.350+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:09:52.355+0000] {sql.py:495} INFO - Running statement: insert into hive.ivy.customer select *  from sqlserver.dbo.customer WHERE date = CAST('2023-11-25' AS DATE), parameters: None
+[2024-08-27T02:09:52.497+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-27T02:09:52.498+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 288, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 442, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 500, in _run_command
+    cur.execute(sql_statement)
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/dbapi.py", line 589, in execute
+    self._iterator = iter(self._query.execute())
+                          ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 819, in execute
+    self._result.rows += self.fetch()
+                         ^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 839, in fetch
+    status = self._request.process(response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/trino/client.py", line 611, in process
+    raise self._process_error(response["error"], response.get("id"))
+trino.exceptions.TrinoUserError: TrinoUserError(type=USER_ERROR, name=TYPE_MISMATCH, message="Insert query has mismatched column types: Table: [integer, date, varchar(50), varchar(100), varchar(50), varchar(10), varchar(50), varchar(20), varchar(50)], Query: [double, timestamp(3), varchar(255), varchar(255), varchar(255), double, varchar(255), double, varchar(255)]", query_id=20240826_112953_00138_kfczv)
+[2024-08-27T02:09:52.511+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=trino_query_dag_ivy, task_id=insert_data_inc, run_id=scheduled__2024-08-27T01:00:00+00:00, execution_date=20240827T010000, start_date=20240827T020952, end_date=20240827T020952
+[2024-08-27T02:09:52.554+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 399 for task insert_data_inc (TrinoUserError(type=USER_ERROR, name=TYPE_MISMATCH, message="Insert query has mismatched column types: Table: [integer, date, varchar(50), varchar(100), varchar(50), varchar(10), varchar(50), varchar(20), varchar(50)], Query: [double, timestamp(3), varchar(255), varchar(255), varchar(255), double, varchar(255), double, varchar(255)]", query_id=20240826_112953_00138_kfczv); 19677)
+[2024-08-27T02:09:52.606+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-08-27T02:09:52.618+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class TrinoOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.)
+[2024-08-27T02:09:52.635+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-27T02:09:52.640+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-08-27T02:24:41.046+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-27T02:24:41.087+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [queued]>
+[2024-08-27T02:24:41.100+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [queued]>
+[2024-08-27T02:24:41.101+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-08-27T02:24:41.126+0000] {taskinstance.py:2330} INFO - Executing <Task(TrinoOperator): insert_data_inc> on 2024-08-27 01:00:00+00:00
+[2024-08-27T02:24:41.137+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=20139) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-08-27T02:24:41.139+0000] {standard_task_runner.py:64} INFO - Started process 20140 to run task
+[2024-08-27T02:24:41.136+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'trino_query_dag_ivy', 'insert_data_inc', 'scheduled__2024-08-27T01:00:00+00:00', '--job-id', '411', '--raw', '--subdir', 'DAGS_FOLDER/ivy.py', '--cfg-path', '/tmp/tmpqg7f97fl']
+[2024-08-27T02:24:41.153+0000] {standard_task_runner.py:91} INFO - Job 411: Subtask insert_data_inc
+[2024-08-27T02:24:41.184+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-27T02:24:41.255+0000] {task_command.py:426} INFO - Running <TaskInstance: trino_query_dag_ivy.insert_data_inc scheduled__2024-08-27T01:00:00+00:00 [running]> on host b476143e3d64
+[2024-08-27T02:24:41.441+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='trino_query_dag_ivy' AIRFLOW_CTX_TASK_ID='insert_data_inc' AIRFLOW_CTX_EXECUTION_DATE='2024-08-27T01:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-08-27T01:00:00+00:00'
+[2024-08-27T02:24:41.442+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-27T02:24:41.460+0000] {sql.py:282} INFO - Executing: insert into hive.ivy.customer select *  from sqlserver.dbo.customer WHERE date = CAST('2023-11-25' AS DATE)
+[2024-08-27T02:24:41.481+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:24:41.503+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:24:41.514+0000] {base.py:84} INFO - Using connection ID 'my_trino_connection' for task execution.
+[2024-08-27T02:24:41.522+0000] {sql.py:495} INFO - Running statement: insert into hive.ivy.customer select *  from sqlserver.dbo.customer WHERE date = CAST('2023-11-25' AS DATE), parameters: None
+[2024-08-27T02:24:42.059+0000] {sql.py:504} INFO - Rows affected: 4
+[2024-08-27T02:24:42.260+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-27T02:24:42.289+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=trino_query_dag_ivy, task_id=insert_data_inc, run_id=scheduled__2024-08-27T01:00:00+00:00, execution_date=20240827T010000, start_date=20240827T022441, end_date=20240827T022442
+[2024-08-27T02:24:42.308+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2024-08-27T02:24:42.320+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class TrinoOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.)
+[2024-08-27T02:24:42.335+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-08-27T02:24:42.338+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
