@@ -1,4 +1,0 @@
-[2024-10-27T04:07:57.849+0000] {processor.py:161} INFO - Started process (PID=66093) to work on /opt/airflow/dags/ipie.py
-[2024-10-27T04:08:00.788+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ipie.py for tasks to queue
-[2024-10-27T04:08:00.790+0000] {logging_mixin.py:188} INFO - [2024-10-27T04:08:00.790+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ipie.py
-[2024-10-27T04:08:00.826+0000] {processor.py:840} INFO - DAG(s) 'query_dag_ipie' retrieved from /opt/airflow/dags/ipie.py
